@@ -1,17 +1,16 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ViralResponse } from '../types';
 
-const apiKey = process.env.API_KEY || '';
-
-const ai = new GoogleGenAI({ apiKey });
-
 export const generateViralScript = async (
   originalScript: string,
-  newTopic: string
+  newTopic: string,
+  apiKey: string
 ): Promise<ViralResponse> => {
   if (!apiKey) {
     throw new Error("API Key is missing. Please check your environment variables.");
   }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const prompt = `
     You are an expert YouTube Strategist and Scriptwriter. 

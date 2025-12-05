@@ -12,6 +12,7 @@ const EXAMPLE_SCRIPT = `(오프닝 - 빠른 컷 전환)
 안 보면 진짜 후회합니다. 바로 가시죠!`;
 
 function App() {
+  const [apiKey, setApiKey] = useState('');
   const [originalScript, setOriginalScript] = useState('');
   const [newTopic, setNewTopic] = useState('');
   const [state, setState] = useState<AppState>(AppState.IDLE);
@@ -19,6 +20,10 @@ function App() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleGenerate = async () => {
+    if (!apiKey.trim()) {
+      alert("API Key를 입력해주세요.");
+      return;
+    }
     if (!originalScript.trim() || !newTopic.trim()) {
       alert("대본과 주제를 모두 입력해주세요.");
       return;
@@ -28,7 +33,7 @@ function App() {
     setErrorMsg(null);
 
     try {
-      const response = await generateViralScript(originalScript, newTopic);
+      const response = await generateViralScript(originalScript, newTopic, apiKey);
       setResult(response);
       setState(AppState.SUCCESS);
     } catch (err: any) {
@@ -84,6 +89,26 @@ function App() {
                <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
               <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-300 mb-3 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-brand-500" />
+                    Google AI API Key
+                  </label>
+                  <input
+                    type="password"
+                    value={apiKey}
+                    onChange={(e) => setApiKey(e.target.value)}
+                    placeholder="Google AI Studio에서 발급받은 API Key를 입력하세요"
+                    className="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-4 text-slate-100 placeholder-slate-600 focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all text-base"
+                  />
+                  <p className="mt-2 text-xs text-slate-500">
+                    API Key는 브라우저에만 저장되며 서버로 전송되지 않습니다. 
+                    <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:text-brand-300 ml-1 underline">
+                      여기서 발급받기
+                    </a>
+                  </p>
+                </div>
+
                 <div>
                   <div className="flex justify-between items-center mb-3">
                     <label className="block text-sm font-semibold text-slate-300 flex items-center gap-2">
