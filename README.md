@@ -1,20 +1,47 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 유튜브 떡상 대본 복제기
 
-# Run and deploy your AI Studio app
+성공한 영상의 구조를 분석하여 새로운 주제로 재창조하는 AI 도구입니다.
 
-This contains everything you need to run your app locally.
+## 🚀 배포
 
-View your app in AI Studio: https://ai.studio/apps/temp/1
+이 프로젝트는 Vercel에 배포되어 있습니다.
 
-## Run Locally
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/principle000-sys/youtube)
 
-**Prerequisites:**  Node.js
+## 💻 로컬 실행
 
+**필수 요구사항:** Node.js 18+
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. 의존성 설치:
+   ```bash
+   npm install
+   ```
+
+2. 개발 서버 실행:
+   ```bash
+   npm run dev
+   ```
+
+3. 브라우저에서 `http://localhost:3000` 접속
+
+## 🔑 API Key 설정
+
+- 웹 UI에서 직접 API Key를 입력할 수 있습니다
+- "API Key 기억하기" 옵션으로 브라우저에 저장 가능
+- API Key는 [Google AI Studio](https://aistudio.google.com/apikey)에서 발급받으세요
+
+## 📦 빌드
+
+```bash
+npm run build
+```
+
+빌드된 파일은 `dist/` 폴더에 생성됩니다.
+
+## 🛠️ 기술 스택
+
+- React 19
+- TypeScript
+- Vite
+- Google Gemini AI
+- Tailwind CSS

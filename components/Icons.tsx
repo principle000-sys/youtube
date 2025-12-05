@@ -8,7 +8,8 @@ import {
   Check, 
   FileText, 
   Zap,
-  BarChart3
+  BarChart3,
+  Key
 } from 'lucide-react';
 
 export { 
@@ -20,5 +21,6 @@ export {
   Check, 
   FileText, 
   Zap,
-  BarChart3
+  BarChart3,
+  Key
 };
